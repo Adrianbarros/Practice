@@ -14,5 +14,7 @@ print k2c
 
 import pandas as pd
 help(pd)
-data_path="C:\\Users\\story645\\Desktop\\EAS213_2015\\571549.csv"
-df=pd.read_cvs(data_path)
+data_path='/home1/student/abarros/Downloads/mos_jfk.csv'
+df=pd.read_csv(data_path)
+print(df)
+
