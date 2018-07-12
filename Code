@@ -1,0 +1,18 @@
+# conevert kelvin to cel
+def ke2ce(k):
+  k=float(k)
+  return k-273.15
+
+print(ke2ce(100))
+#make a random det of numbers
+ktemps=range(0,100,10)
+#loop that will be convert every degree into celcius 
+k2c= dict()
+for k in ktemps
+  k2c[k]=ke2ce(k)
+print k2c
+
+import pandas as pd
+help(pd)
+data_path="C:\\Users\\story645\\Desktop\\EAS213_2015\\571549.csv"
+df=pd.read_cvs(data_path)
