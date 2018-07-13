@@ -13,8 +13,59 @@ for k in ktemps
 print k2c
 
 import pandas as pd
-help(pd)
-data_path='/home1/student/abarros/Downloads/mos_jfk.csv'
+#help(pd)
+data_path='/home1/student/abarros/Downloads/obs_nyc.csv'
 df=pd.read_csv(data_path)
 print(df)
+#shows the key names
+print df.keys()
+#
+for sn in df['NAME']:
+    print sn, 'NY' in sn
+    
+ # testing the lenghts of the data
+nyc_inds=['NY' in sn for sn in df['NAME']]
+print len(nyc_inds), len(df)
+#results: 20288 20288
+nyc=df[nyc_inds]
+print nyc
+# this is goint to give an empty Dataframe cuz they are all false, should revise how to actually get true's
+#FIXED
+yc_inds = [sn.endswith("NY US") for sn in df['NAME']]
+nyc= df[nyc_inds]
+print nyc
+# empty again...
+nyc_groups = nyc.groupby('DATE')
+print nyc_groups
 
+# lets make a list
+print list(nyc_groups)
+#now based on dates
+print list(nyc.groupby('DATE'))
+nyc_groups = nyc.groupby('DA
+# now the means TE').mean()
+print nyc_groups
+#lets get rid of values that we don't want
+nyc[nyc==-9999]=np.nan 
+
+#############################################
+import pandas as pd
+import numpy as np
+
+data_path = "/home1/student/abarros/Downloads/obs_nyc.csv"
+df = pd.read_csv(data_path)
+
+nyc_inds = [sn.endswith("NY US") for sn in df['NAME']]
+nyc = df[nyc_inds]
+datakeys = [u'TAVG', u'TMAX',u'TMIN', u'TSUN', u'WDF2', u'WDF5', u'WESD', u'WSF2']
+for dk in datakeys:
+    nyc[dk][nyc[dk]==-9999]= np.nan
+
+nyc_agg = nyc.groupby('DATE').mean()
+print nyc_agg
+
+import matplotlib.pyplot as plt
+%matplotlib inline 
+fig = plt.figure()
+ax = fig.add_subplot(1,1,1)
+nyc_agg['TMAX'].plot(ax=ax)
